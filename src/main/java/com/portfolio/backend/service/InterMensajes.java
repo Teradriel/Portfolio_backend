@@ -9,7 +9,7 @@ public interface InterMensajes {
     
     public void borrarMensaje(Long id);
     
-    public void editarMensaje(Mensajes mens);
+    public void agregarMensaje(Mensajes mens);
     
     public Mensajes buscarMensaje(Long id);
     

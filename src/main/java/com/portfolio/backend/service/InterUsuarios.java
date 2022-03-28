@@ -11,6 +11,8 @@ public interface InterUsuarios {
     
     public void editarUsuario(Usuarios usr);
     
+    public void editarPassUsuario(Usuarios usr);
+    
     public Usuarios buscarUsuario(Long id);
     
 }

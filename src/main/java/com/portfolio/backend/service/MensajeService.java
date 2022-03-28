@@ -28,7 +28,7 @@ public class MensajeService implements InterMensajes{
     }
 
     @Override
-    public void editarMensaje(Mensajes mens) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void agregarMensaje(Mensajes mens) {
+        mensRepo.save(mens);
     }
 }

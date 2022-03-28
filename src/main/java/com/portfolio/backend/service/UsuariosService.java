@@ -23,6 +23,11 @@ public class UsuariosService implements InterUsuarios{
     }
     
     @Override
+    public void editarPassUsuario(Usuarios usr){
+        usrRepo.save(usr);
+    }
+    
+    @Override
     public void borrarUsuario(Long id){
         usrRepo.deleteById(id);
     }
