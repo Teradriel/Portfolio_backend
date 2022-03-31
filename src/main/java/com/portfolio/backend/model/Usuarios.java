@@ -22,16 +22,16 @@ public class Usuarios {
     private String nombre;
     private String apellido;
     private String telefono;
-    private Mensajes mensaje;
-    private Estudios estudios;
-    private Experiencias experiencias;
-    private Introduccion introduccion;
-    private Skills skills;
+    private Long id_mensaje;
+    private Long id_estudios;
+    private Long id_experiencias;
+    private Long id_introduccion;
+    private Long id_skills;
 
     public Usuarios() {
     }
 
-    public Usuarios(Long id, String usuario, String pass, String mail, String nombre, String apellido, String telefono, Mensajes mensaje, Estudios estudios, Experiencias experiencias, Introduccion introduccion, Skills skills) {
+    public Usuarios(Long id, String usuario, String pass, String mail, String nombre, String apellido, String telefono, Long id_mensaje, Long id_estudios, Long id_experiencias, Long id_introduccion, Long id_skills) {
         this.id = id;
         this.usuario = usuario;
         this.pass = pass;
@@ -39,12 +39,14 @@ public class Usuarios {
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
-        this.mensaje = mensaje;
-        this.estudios = estudios;
-        this.experiencias = experiencias;
-        this.introduccion = introduccion;
-        this.skills = skills;
+        this.id_mensaje = id_mensaje;
+        this.id_estudios = id_estudios;
+        this.id_experiencias = id_experiencias;
+        this.id_introduccion = id_introduccion;
+        this.id_skills = id_skills;
     }
+
+    
 
     
 

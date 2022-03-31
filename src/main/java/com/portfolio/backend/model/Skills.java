@@ -17,15 +17,15 @@ public class Skills {
     private Long id;
     
     private String skill;
-    private int nivel;
+    private Long id_nivel;
 
     public Skills() {
     }
 
-    public Skills(Long id, String skill, int nivel) {
+    public Skills(Long id, String skill, Long nivel) {
         this.id = id;
         this.skill = skill;
-        this.nivel = nivel;
+        this.id_nivel = nivel;
     }
     
        
