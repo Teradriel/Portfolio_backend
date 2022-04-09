@@ -18,22 +18,28 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="skill")
-public class Skills {
+@Table(name="curso")
+public class Cursos {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotNull
-    private String skill;
+    private String titulo;
     
     @NotNull
-    private int nivel;
+    private String fecha;
     
     @NotNull
+    private String lugar;
+    
+    @NotNull
+    private String descripcion;
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     @JsonBackReference
     private Usuarios usuario;
+    
 }

@@ -16,6 +16,7 @@ import com.portfolio.backend.service.InterSkills;
 import com.portfolio.backend.service.InterUsuarios;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -27,8 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin("*")
 @RestController
 public class Controller {
+    
+   // private final long USUARIO_ID = 1;
     
     @Autowired
     private InterMensajes mensServ;
@@ -53,7 +57,12 @@ public class Controller {
     
     @PostMapping ("/new/message")
     public void agregarMensaje(@RequestBody Mensajes mens){
+//        Usuarios usr = new Usuarios();
+//        usr.setId(USUARIO_ID);
+//        
+//        mens.setUsuario(usr);
         mensServ.agregarMensaje(mens);
+        
     }
     
     @GetMapping ("/messages")
@@ -72,7 +81,8 @@ public class Controller {
     }
     
     @PostMapping("/new/usr")
-    public void agregarUsuario(@RequestBody Usuarios usr){
+    public void editarUsuario(@RequestBody Usuarios usr){
+        
         usuarioServ.editarUsuario(usr);
     }
     
@@ -224,7 +234,7 @@ public class Controller {
     public String editarSkill(@PathVariable Long id, @RequestBody Skills skill){
         skillServ.editarSkills(skill);
         
-        return "La habilidad en " + skill.getSkill()+ " ha sido actualizada exitosamente.";
+        return "La habilidad " + skill.getSkill()+ " ha sido actualizada exitosamente.";
     }
     
 }

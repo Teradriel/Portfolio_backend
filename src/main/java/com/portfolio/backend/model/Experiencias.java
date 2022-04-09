@@ -1,41 +1,44 @@
 package com.portfolio.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="experiencia")
 public class Experiencias {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotNull
+    private String titulo;
+    @NotNull
     private String descripcion;
+    @NotNull
     private String empresa;
-    private String year_incio;
-    private String year_fin;
-    private String competencias;
-
-    public Experiencias() {
-    }
-
-    public Experiencias(Long id, String descripcion, String empresa, String year_incio, String year_fin, String competencias) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.empresa = empresa;
-        this.year_incio = year_incio;
-        this.year_fin = year_fin;
-        this.competencias = competencias;
-    }
-
+    @NotNull
+    private String fechaIncio;
+    @NotNull
+    private String fechaFin;
     
-    
-    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    @JsonBackReference
+    private Usuarios usuario;
     
 }

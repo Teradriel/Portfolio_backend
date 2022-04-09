@@ -37,4 +37,24 @@ public class UsuariosService implements InterUsuarios{
         return usrRepo.findById(id).orElse(null);
     }
     
+//    @Override
+//    public String guardarUsuario(UsuarioDTO usuarioDTO){
+//        Usuarios usuario = new Usuarios();
+//        usuario.setId(usuarioDTO.getId());
+//        usuario.setNombre(usuarioDTO.getNombre());
+//        usuario.setApellido(usuarioDTO.getApellido());
+//        usuario.setPass(usuarioDTO.getPass());
+//        usuario.setTelefono(usuarioDTO.getTelefono());
+//        usuario.setUsuario(usuarioDTO.getUsuario());
+//        usuario.setMail(usuarioDTO.getMail());
+//        usuario.setId_estudios(usuarioDTO.getId_estudios());
+//        usuario.setId_experiencias(usuarioDTO.getId_experiencias());
+//        usuario.setId_introduccion(usuarioDTO.getId_introduccion());
+//        usuario.setId_mensaje(usuarioDTO.getId_mensaje());
+//        usuario.setId_skills(usuarioDTO.getId_skills());
+//        
+//        usrRepo.save(usuario);
+//        return "Usuario guardado";
+//    }
+    
 }
