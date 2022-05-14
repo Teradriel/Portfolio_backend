@@ -2,6 +2,7 @@ package com.portfolio.backend.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users",
@@ -31,16 +31,13 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
     private String username;
 
     @NotBlank
-    @Size(max = 50)
     @Email
     private String email;
 
     @NotBlank
-    @Size(max = 120)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -49,11 +46,8 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_usuario",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    private Set<Usuarios> usuario = new HashSet<>();
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private Usuarios usuario;
 
     public User() {
     }
@@ -103,13 +97,12 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-    
-    public Set<Usuarios> getUsuarios() {
-        return usuario;
-    }
 
-    public void setUsuarios(Set<Usuarios> usuario) {
-        this.usuario = usuario;
-    }
-
+//    public Usuarios getUsuario() {
+//        return usuario;
+//    }
+//
+//    public User(Usuarios usuario) {
+//        this.usuario = usuario;
+//    }
 }

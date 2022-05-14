@@ -21,7 +21,6 @@ public class ControllerMensajes {
     @PostMapping ("/new/message")
     public void agregarMensaje(@RequestBody Mensajes mens){
         mensServ.agregarMensaje(mens);
-        
     }
     
     @GetMapping ("/messages")
