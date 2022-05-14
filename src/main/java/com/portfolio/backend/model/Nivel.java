@@ -1,5 +1,6 @@
 package com.portfolio.backend.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,5 +28,5 @@ public class Nivel {
     private int nivel;
     
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "skill")
-    private Set<Skills> skill;
+    private Set<Skills> skill = new HashSet<>();
 }

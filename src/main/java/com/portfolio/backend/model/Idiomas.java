@@ -1,6 +1,8 @@
 package com.portfolio.backend.model;
 
-//import java.util.Set;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,8 +32,8 @@ public class Idiomas {
 
     private String nivel;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
-    private Usuarios usuario;
+    private Set<Usuarios> usuario = new HashSet<>();
         
 }

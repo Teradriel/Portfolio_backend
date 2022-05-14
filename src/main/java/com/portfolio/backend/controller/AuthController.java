@@ -24,7 +24,7 @@ import com.portfolio.backend.payload.response.MessageResponse;
 import com.portfolio.backend.repository.RoleRepository;
 //import com.portfolio.backend.repository.SkillsRepository;
 import com.portfolio.backend.repository.UserRepository;
-import com.portfolio.backend.repository.UsuariosRepository;
+//import com.portfolio.backend.repository.UsuariosRepository;
 import com.portfolio.backend.security.jwt.JwtUtils;
 import com.portfolio.backend.security.services.UserDetailsImpl;
 import java.util.HashSet;
@@ -52,8 +52,8 @@ public class AuthController {
     AuthenticationManager authenticationManager;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    UsuariosRepository usuarioRepository;
+//    @Autowired
+//    UsuariosRepository usuarioRepository;
 //    @Autowired
 //    CursosRepository cursoRepository;
 //    @Autowired
@@ -68,7 +68,7 @@ public class AuthController {
 //    MensajesRepository mensRepository;
 //    @Autowired
 //    SkillsRepository skillRepository;
-//    @Autowired
+    @Autowired
     RoleRepository roleRepository;
     @Autowired
     PasswordEncoder encoder;
@@ -136,7 +136,6 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
-        userRepository.save(user);
 //        Long id = user.getId();
 //        Set<Cursos> curso = new HashSet<>();
 //        curso.add(null);
@@ -152,7 +151,7 @@ public class AuthController {
 //        mens.add(null);
 //        Set<Skills> skill = new HashSet<>();
 //        skill.add(null);
-//        Usuarios usuarioN = new Usuarios(id, "", "", "", "", "", "", "", "", "", "", "", null, null, null, null, null, null, null, null);
+//        Usuarios usuarioN = new Usuarios(id, "", "", "", "", "", "", "", "", "", "", "", null, null, null, null, null, null, null, user);
 //        usuarioN.setUser(user);
 //        usuarioN.setCurso(curso);
 //        usuarioN.setEstudio(estudio);
@@ -169,6 +168,8 @@ public class AuthController {
 //        interesRepository.saveAll(interes);
 //        mensRepository.saveAll(mens);
 //        skillRepository.saveAll(skill);
+//        user.setUsuario(usuarioN);
+        userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("¡Usuario creado correctamente!"));
     }
 

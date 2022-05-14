@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import lombok.Data;
 
 @Entity
 @Table(name = "users",
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotBlank;
             @UniqueConstraint(columnNames = "email")
         }
 )
+@Data
 public class User {
 
     @Id
@@ -47,7 +49,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
     
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuarios usuario;
 
     public User() {
@@ -57,53 +59,5 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Usuarios getUsuario() {
-        return usuario;
-    }
-
-    public User(Usuarios usuario) {
-        this.usuario = usuario;
     }
 }

@@ -2,6 +2,7 @@ package com.portfolio.backend.model;
 
 //import java.util.Set;
 //import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 //import javax.persistence.FetchType;
@@ -35,7 +36,7 @@ public class Cursos {
 
     private String descripcion;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id")
     private Usuarios usuario;
     

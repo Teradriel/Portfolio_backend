@@ -1,6 +1,7 @@
 package com.portfolio.backend.model;
 
 //import java.util.HashSet;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -41,26 +42,26 @@ public class Usuarios {
     private String imagen;
     private String intro;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Cursos> curso;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Cursos> curso = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Estudios> estudio;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Estudios> estudio = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Experiencias> exp;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Experiencias> exp = new HashSet<>();
     
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Idiomas> idioma;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Idiomas> idioma = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Intereses> interes;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Intereses> interes = new HashSet<>();
     
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Mensajes> mens;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Mensajes> mens = new HashSet<>();
         
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
-    private Set<Skills> skill;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+    private Set<Skills> skill = new HashSet<>();
     
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
     private User user;
