@@ -1,13 +1,13 @@
 package com.portfolio.backend.model;
 
-import java.util.Set;
+//import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+//import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -36,8 +36,11 @@ public class Skills {
 //    private Set<Nivel> nivel= new HashSet<>();
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "skill_nivel",
-            joinColumns = @JoinColumn(name = "nivel_id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    @JoinColumn(name = "nivel_id")
     private Nivel nivel;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id")
+    private Usuarios usuario;
+    
 }

@@ -46,8 +46,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
     
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private Usuarios usuario;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")
+    private Usuarios usuario;
 
     public User() {
     }
@@ -98,11 +99,11 @@ public class User {
         this.roles = roles;
     }
 
-//    public Usuarios getUsuario() {
-//        return usuario;
-//    }
-//
-//    public User(Usuarios usuario) {
-//        this.usuario = usuario;
-//    }
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public User(Usuarios usuario) {
+        this.usuario = usuario;
+    }
 }

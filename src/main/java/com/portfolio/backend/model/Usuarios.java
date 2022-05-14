@@ -1,6 +1,6 @@
 package com.portfolio.backend.model;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+//import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -41,52 +41,27 @@ public class Usuarios {
     private String imagen;
     private String intro;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "curso_id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Cursos> curso;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "estudio_id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Estudios> estudio;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "experiencia_id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Experiencias> exp;
     
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "idioma_id"))
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Idiomas> idioma;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "interes_id"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Intereses> interes;
     
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "mensajes_id"))
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Mensajes> mens;
         
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "usuario_data",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "usuario")
     private Set<Skills> skill;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_usuario",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
     private User user;
-    
 }
