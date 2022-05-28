@@ -2,14 +2,12 @@ package com.portfolio.backend.model;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -32,8 +30,8 @@ public class Idiomas {
 
     private String nivel;
     
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Set<Usuarios> usuario = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Set<User> user = new HashSet<>();
         
 }

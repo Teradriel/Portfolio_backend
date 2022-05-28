@@ -1,30 +1,14 @@
 package com.portfolio.backend.controller;
 
-//import com.portfolio.backend.model.Cursos;
 import com.portfolio.backend.model.ERole;
-//import com.portfolio.backend.model.Estudios;
-//import com.portfolio.backend.model.Experiencias;
-//import com.portfolio.backend.model.Idiomas;
-//import com.portfolio.backend.model.Intereses;
-//import com.portfolio.backend.model.Mensajes;
 import com.portfolio.backend.model.Role;
-//import com.portfolio.backend.model.Skills;
 import com.portfolio.backend.model.User;
-//import com.portfolio.backend.model.Usuarios;
 import com.portfolio.backend.payload.request.LoginRequest;
 import com.portfolio.backend.payload.request.SignUpRequest;
 import com.portfolio.backend.payload.response.JwtResponse;
 import com.portfolio.backend.payload.response.MessageResponse;
-//import com.portfolio.backend.repository.CursosRepository;
-//import com.portfolio.backend.repository.EstudiosRepository;
-//import com.portfolio.backend.repository.ExperienciasRepository;
-//import com.portfolio.backend.repository.IdiomasRepository;
-//import com.portfolio.backend.repository.InteresesRepository;
-//import com.portfolio.backend.repository.MensajesRepository;
 import com.portfolio.backend.repository.RoleRepository;
-//import com.portfolio.backend.repository.SkillsRepository;
 import com.portfolio.backend.repository.UserRepository;
-//import com.portfolio.backend.repository.UsuariosRepository;
 import com.portfolio.backend.security.jwt.JwtUtils;
 import com.portfolio.backend.security.services.UserDetailsImpl;
 import java.util.HashSet;
@@ -39,11 +23,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -52,22 +38,6 @@ public class AuthController {
     AuthenticationManager authenticationManager;
     @Autowired
     UserRepository userRepository;
-//    @Autowired
-//    UsuariosRepository usuarioRepository;
-//    @Autowired
-//    CursosRepository cursoRepository;
-//    @Autowired
-//    EstudiosRepository estudioRepository;
-//    @Autowired
-//    ExperienciasRepository expRepository;
-//    @Autowired
-//    IdiomasRepository idiomaRepository;
-//    @Autowired
-//    InteresesRepository interesRepository;
-//    @Autowired
-//    MensajesRepository mensRepository;
-//    @Autowired
-//    SkillsRepository skillRepository;
     @Autowired
     RoleRepository roleRepository;
     @Autowired
@@ -81,7 +51,6 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
@@ -89,7 +58,7 @@ public class AuthController {
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
-                userDetails.getEmail(),
+                userDetails.getEmail(), userDetails.getPassword(),
                 roles));
     }
 
@@ -136,39 +105,6 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
-//        Long id = user.getId();
-//        Set<Cursos> curso = new HashSet<>();
-//        curso.add(null);
-//        Set<Estudios> estudio = new HashSet<>();
-//        estudio.add(null);
-//        Set<Experiencias> exp = new HashSet<>();
-//        exp.add(null);
-//        Set<Idiomas> idioma = new HashSet<>();
-//        idioma.add(null);
-//        Set<Intereses> interes = new HashSet<>();
-//        interes.add(null);
-//        Set<Mensajes> mens = new HashSet<>();
-//        mens.add(null);
-//        Set<Skills> skill = new HashSet<>();
-//        skill.add(null);
-//        Usuarios usuarioN = new Usuarios(id, "", "", "", "", "", "", "", "", "", "", "", null, null, null, null, null, null, null, user);
-//        usuarioN.setUser(user);
-//        usuarioN.setCurso(curso);
-//        usuarioN.setEstudio(estudio);
-//        usuarioN.setExp(exp);
-//        usuarioN.setIdioma(idioma);
-//        usuarioN.setInteres(interes);
-//        usuarioN.setMens(mens);
-//        usuarioN.setSkill(skill);
-//        usuarioRepository.save(usuarioN);
-//        cursoRepository.saveAll(curso);
-//        estudioRepository.saveAll(estudio);
-//        expRepository.saveAll(exp);
-//        idiomaRepository.saveAll(idioma);
-//        interesRepository.saveAll(interes);
-//        mensRepository.saveAll(mens);
-//        skillRepository.saveAll(skill);
-//        user.setUsuario(usuarioN);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("¡Usuario creado correctamente!"));
     }

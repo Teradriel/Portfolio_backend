@@ -1,10 +1,7 @@
 package com.portfolio.backend.model;
 
-//import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -43,8 +40,8 @@ public class Skills {
     @JoinColumn(name = "nivel_id")
     private Nivel nivel;
     
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Set<Usuarios> usuario = new HashSet<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Set<User> user = new HashSet<>();
     
 }

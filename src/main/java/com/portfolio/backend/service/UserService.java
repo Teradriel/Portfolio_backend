@@ -19,6 +19,7 @@ public class UserService implements InterUser {
         
     @Override
     public void editarUser(User user){
+        
         userRepo.save(user);
     }
     
