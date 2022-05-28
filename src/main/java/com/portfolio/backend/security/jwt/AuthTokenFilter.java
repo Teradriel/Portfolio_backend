@@ -38,7 +38,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            logger.error("Cannot set user authentication: {}", e);
+            logger.error("No se puede asignar una autenticación al usuario{}", e);
         }
         filterChain.doFilter(request, response);
     }

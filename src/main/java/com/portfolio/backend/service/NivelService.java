@@ -16,17 +16,7 @@ public class NivelService implements InterNivel{
     public List<Nivel> verNivel(){
         return nivelRepo.findAll();
     }
-    
-    @Override
-    public void editarNivel(Nivel niv){
-        nivelRepo.save(niv);
-    }
-    
-    @Override
-    public void borrarNivel(Long id){
-        nivelRepo.deleteById(id);
-    }
-    
+        
     @Override
     public Nivel buscarNivel(Long id){
         return nivelRepo.findById(id).orElse(null);

@@ -16,9 +16,10 @@ public class UserService implements InterUser {
     public List<User> verUser(){
         return userRepo.findAll();
     }
-    
+        
     @Override
     public void editarUser(User user){
+        
         userRepo.save(user);
     }
     

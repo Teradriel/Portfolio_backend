@@ -6,31 +6,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/skill")
 public class ControllerSkills {
         
     @Autowired
     private InterSkills skillServ;
     
-    @PostMapping("/new/skills")
+    @PostMapping("/new")
     public void agregarSkills(@RequestBody Skills skill){
         skillServ.editarSkills(skill);
     }
     
-    @GetMapping("/skills")
+    @GetMapping("/all")
     @ResponseBody
     public List<Skills> verSkills(){
         return skillServ.verSkills();
     }
     
-    @DeleteMapping("/delete/skills/{id}")
+    @DeleteMapping("/delete/{id}")
     public String borrarSkills(@PathVariable Long id){
         String skilltemp = skillServ.buscarSkills(id).getSkill();
         
@@ -39,7 +41,7 @@ public class ControllerSkills {
         return "La skill en "+ skilltemp + " fue eliminada exitosamente.";
     }
     
-    @PatchMapping("edit/skills/{id}")
+    @PutMapping("/edit/{id}")
     public String editarSkill(@PathVariable Long id, @RequestBody Skills skill){
         skillServ.editarSkills(skill);
         
