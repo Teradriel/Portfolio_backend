@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class ControllerUsuarios {
-    
+
     @Autowired
     private InterUser userServ;
 
@@ -30,7 +30,7 @@ public class ControllerUsuarios {
     }
 
     @GetMapping("/{id}")
-        public ResponseEntity<User> getUser(@PathVariable Long id) {
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
         User userData = this.userServ.buscarUser(id);
         return ResponseEntity.ok(userData);
     }

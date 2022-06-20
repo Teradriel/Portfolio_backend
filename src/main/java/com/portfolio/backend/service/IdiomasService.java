@@ -31,5 +31,4 @@ public class IdiomasService implements InterIdiomas{
     public Idiomas buscarIdiomas(Long id){
         return idiomaRepo.findById(id).orElse(null);
     }
-    
 }

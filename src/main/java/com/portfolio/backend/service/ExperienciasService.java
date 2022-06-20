@@ -31,6 +31,4 @@ public class ExperienciasService implements InterExperiencias{
     public Experiencias buscarExp(Long id){
         return expRepo.findById(id).orElse(null);
     }
-    
-    
 }

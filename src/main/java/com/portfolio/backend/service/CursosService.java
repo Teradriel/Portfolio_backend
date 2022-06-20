@@ -30,6 +30,5 @@ public class CursosService implements InterCursos{
     @Override
     public Cursos buscarCursos(Long id){
         return cursoRepo.findById(id).orElse(null);
-    }
-    
+    }    
 }

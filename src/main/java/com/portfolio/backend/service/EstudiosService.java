@@ -18,18 +18,12 @@ public class EstudiosService implements InterEstudios{
     }
     
     @Override
-    public void editarEstudios(Estudios estud){
-        estudioRepo.save(estud);
-    }
-    
-    @Override
     public void borrarEstudios(Long id){
         estudioRepo.deleteById(id);
     }
     
     @Override
-    public Estudios buscarEstudios(Long id){
+    public Estudios buscarEstudio(Long id){
         return estudioRepo.findById(id).orElse(null);
     }
-    
 }
