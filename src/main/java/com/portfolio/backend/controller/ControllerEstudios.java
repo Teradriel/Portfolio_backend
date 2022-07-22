@@ -30,15 +30,16 @@ public class ControllerEstudios {
 
     @PostMapping("/new/{id}")
     @Transactional
-    public String agregarEstudio(@PathVariable Long id, @RequestBody Estudios estud) {
+    public ResponseEntity<User> agregarEstudio(@PathVariable Long id, @RequestBody Estudios estud) {
         User currentUser = userServ.buscarUser(id);
         currentUser.getEstudio().add(estud);
-        return "El estudio ha sido agregado correctamente";
+        currentUser = userServ.buscarUser(id);
+        return ResponseEntity.ok(currentUser);
     }
     
     @PutMapping("/edit/{id}")
     @Transactional
-    public String editarEstudios(@PathVariable Long id, @RequestBody Estudios estud) {
+    public ResponseEntity<Estudios> editarEstudios(@PathVariable Long id, @RequestBody Estudios estud) {
         Estudios currentEstudio = estudioServ.buscarEstudio(id);
         String estudTitulo = estud.getTitulo();
         String estudFechaInicio = estud.getFechaInicio();
@@ -49,7 +50,7 @@ public class ControllerEstudios {
         currentEstudio.setFechaInicio(estudFechaInicio);
         currentEstudio.setInstitucion(estudInstitucion);
 
-        return "El estudio en " + estudInstitucion + ", ha sido actualizado exitosamente.";
+        return ResponseEntity.ok(currentEstudio);
     }
 
     @GetMapping("/all")
@@ -57,22 +58,17 @@ public class ControllerEstudios {
     public List<Estudios> verEstudios() {
         return estudioServ.verEstudios();
     }
-
+    
     @GetMapping("/{id}")
     public ResponseEntity<Estudios> buscarEstudios(@PathVariable Long id) {
-        Estudios estudio = this.estudioServ.buscarEstudio(id);
+        Estudios estudio = estudioServ.buscarEstudio(id);
         return ResponseEntity.ok(estudio);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String borrarEstudio(@PathVariable Long id) {
-        String estudTemp = estudioServ.buscarEstudio(id).getInstitucion();
-
-        estudioServ.borrarEstudios(id);
-
-        return "El estudio en " + estudTemp + " fue eliminado exitosamente.";
+    @DeleteMapping("/delete/{id}/{user_id}")
+    public ResponseEntity<User> borrarEstudio(@PathVariable Long id, @PathVariable Long user_id) {
+        estudioServ.borrarEstudios(id, user_id);
+        User currentUser = userServ.buscarUser(user_id);
+        return ResponseEntity.ok(currentUser);
     }
-
-    
-
 }

@@ -7,8 +7,8 @@ public interface InterEstudios {
     
     public List<Estudios> verEstudios();
     
-    public void borrarEstudios(Long id);
+    public void borrarEstudios(Long id, Long user_id);
     
     public Estudios buscarEstudio(Long id);
-    
+       
 }

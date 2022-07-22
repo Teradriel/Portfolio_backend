@@ -7,10 +7,8 @@ public interface InterCursos {
     
     public List<Cursos> verCursos();
     
-    public void borrarCursos(Long id);
-    
-    public void editarCursos(Cursos estud);
-    
+    public void borrarCursos(Long id, Long user_id);
+        
     public Cursos buscarCursos(Long id);
     
 }

@@ -7,9 +7,7 @@ public interface InterSkills {
     
     public List<Skills> verSkills();
     
-    public void borrarSkills(Long id);
-    
-    public void editarSkills(Skills skill);
+    public void borrarSkills(Long id, Long user_id);
     
     public Skills buscarSkills(Long id);
     

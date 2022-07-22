@@ -30,15 +30,16 @@ public class ControllerCursos {
     
     @PostMapping("/new/{id}")
     @Transactional
-    public String agregarCurso(@PathVariable Long id, @RequestBody Cursos curso) {
+    public ResponseEntity<User> agregarCurso(@PathVariable Long id, @RequestBody Cursos curso) {
         User currentUser = userServ.buscarUser(id);
         currentUser.getCurso().add(curso);
-        return "El curso ha sido agregado correctamente";
+        currentUser = userServ.buscarUser(id);
+        return ResponseEntity.ok(currentUser);
     }
     
     @PutMapping("/edit/{id}")
     @Transactional
-    public String editarCursos(@PathVariable Long id, @RequestBody Cursos curso) {
+    public ResponseEntity<Cursos> editarCursos(@PathVariable Long id, @RequestBody Cursos curso) {
         Cursos currentCurso = cursoServ.buscarCursos(id);
         String cursoTitulo = curso.getTitulo();
         String cursoFecha = curso.getFecha();
@@ -49,7 +50,7 @@ public class ControllerCursos {
         currentCurso.setLugar(cursoLugar);
         currentCurso.setDescripcion(cursoDescripcion);
 
-        return "El curso " + cursoTitulo + ", ha sido actualizado exitosamente.";
+        return ResponseEntity.ok(currentCurso);
     }
     
     @GetMapping("/all")
@@ -64,12 +65,10 @@ public class ControllerCursos {
         return ResponseEntity.ok(curso);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String borrarCurso(@PathVariable Long id) {
-        String cursoTemp = cursoServ.buscarCursos(id).getTitulo();
-
-        cursoServ.borrarCursos(id);
-
-        return "El curso " + cursoTemp + ", fue eliminado exitosamente.";
+    @DeleteMapping("/delete/{id}/{user_id}")
+    public ResponseEntity<User> borrarCurso(@PathVariable Long id, @PathVariable Long user_id) {
+        cursoServ.borrarCursos(id, user_id);
+        User currentUser = userServ.buscarUser(user_id);
+        return ResponseEntity.ok(currentUser);
     }
 }

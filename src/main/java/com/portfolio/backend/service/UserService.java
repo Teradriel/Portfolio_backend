@@ -5,6 +5,7 @@ import com.portfolio.backend.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService implements InterUser {
@@ -23,6 +24,7 @@ public class UserService implements InterUser {
     }
 
     @Override
+    @Transactional
     public void borrarUser(Long id) {
         userRepo.deleteById(id);
     }

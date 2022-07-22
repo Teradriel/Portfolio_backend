@@ -6,6 +6,7 @@ import com.portfolio.backend.service.InterExperiencias;
 import com.portfolio.backend.service.InterUser;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,15 +30,16 @@ public class ControllerExperiencias {
     
     @PostMapping("/new/{id}")
     @Transactional
-    public String agregarExp(@PathVariable Long id, @RequestBody Experiencias exp) {
+    public ResponseEntity<User> agregarExp(@PathVariable Long id, @RequestBody Experiencias exp) {
         User currentUser = userServ.buscarUser(id);
         currentUser.getExp().add(exp);
-        return "La experiencia laboral ha sido agregada correctamente";
+        currentUser = userServ.buscarUser(id);
+        return ResponseEntity.ok(currentUser);
     }
     
     @PutMapping("/edit/{id}")
     @Transactional
-    public String editarExp(@PathVariable Long id, @RequestBody Experiencias exp) {
+    public ResponseEntity<Experiencias> editarExp(@PathVariable Long id, @RequestBody Experiencias exp) {
         Experiencias currentExp = expServ.buscarExp(id);
         String expTitulo = exp.getTitulo();
         String expFechaInicio = exp.getFechaInicio();
@@ -50,7 +52,7 @@ public class ControllerExperiencias {
         currentExp.setEmpresa(expEmpresa);
         currentExp.setDescripcion(expDescr);
 
-        return "La experiencia laboral en " + expEmpresa + ", ha sido actualizado exitosamente.";
+        return ResponseEntity.ok(currentExp);
     }
     
     @GetMapping("/all")
@@ -58,13 +60,17 @@ public class ControllerExperiencias {
     public List<Experiencias> verExp(){
         return expServ.verExp();
     }
+
+@GetMapping("/{id}")
+    public ResponseEntity<Experiencias> buscarEstudios(@PathVariable Long id) {
+        Experiencias exp = expServ.buscarExp(id);
+        return ResponseEntity.ok(exp);
+    }
     
-    @DeleteMapping("/delete/{id}")
-    public String borrarExp(@PathVariable Long id){
-        String exptemp = expServ.buscarExp(id).getEmpresa();
-        
-        expServ.borrarExp(id);
-        
-        return "La experiencia en " + exptemp + " fue eliminada exitosamente.";
+    @DeleteMapping("/delete/{id}/{user_id}")
+    public ResponseEntity<User> borrarExp(@PathVariable Long id, @PathVariable Long user_id){
+        expServ.borrarExp(id, user_id);
+        User currentUser = userServ.buscarUser(user_id);
+        return ResponseEntity.ok(currentUser);
     }
 }

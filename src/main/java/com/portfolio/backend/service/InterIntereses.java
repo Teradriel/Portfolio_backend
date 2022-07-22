@@ -7,10 +7,8 @@ public interface InterIntereses {
     
     public List<Intereses> verIntereses();
     
-    public void borrarIntereses(Long id);
-    
-    public void editarIntereses(Intereses estud);
-    
+    public void borrarIntereses(Long id, Long user_id);
+        
     public Intereses buscarIntereses(Long id);
     
 }

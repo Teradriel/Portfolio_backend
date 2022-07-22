@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,12 +35,15 @@ public class ControllerUsuarios {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String borrarUsuario(@PathVariable Long id) {
-        String usrtemp = userServ.buscarUser(id).getUsername();
+    public ResponseEntity<User> borrarUsuario(@PathVariable Long id) {
+        User currentUser = userServ.buscarUser(id);
+//        String usrtemp = userServ.buscarUser(id).getUsername();
 
         userServ.borrarUser(id);
 
-        return "El usuario " + usrtemp + " fue eliminado exitosamente.";
+//        return "El usuario " + usrtemp + " fue eliminado exitosamente.";
+            currentUser = userServ.buscarUser(id);
+            return ResponseEntity.ok(currentUser);
     }
 
     @PutMapping("/edit/{id}")
@@ -58,16 +60,4 @@ public class ControllerUsuarios {
         }
 
     }
-
-    @PutMapping("/editpass/{id}")
-    public String editarPassUsuario(@PathVariable Long id, @RequestParam String pass) {
-        User usr = userServ.buscarUser(id);
-
-        usr.setPassword(pass);
-
-        userServ.editarUser(usr);
-
-        return usr.getUsername() + ", has cambiado tu contraseña exitosamente.";
-    }
-
 }

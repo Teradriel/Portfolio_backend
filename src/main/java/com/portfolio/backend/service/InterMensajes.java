@@ -7,7 +7,7 @@ public interface InterMensajes {
     
     public List<Mensajes> verMensajes();
     
-    public void borrarMensaje(Long id);
+    public void borrarMensaje(Long id, Long user_id);
     
     public void agregarMensaje(Mensajes mens);
     

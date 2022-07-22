@@ -7,10 +7,8 @@ public interface InterIdiomas {
     
     public List<Idiomas> verIdiomas();
     
-    public void borrarIdiomas(Long id);
-    
-    public void editarIdiomas(Idiomas estud);
-    
+    public void borrarIdiomas(Long id, Long user_id);
+        
     public Idiomas buscarIdiomas(Long id);
     
 }
