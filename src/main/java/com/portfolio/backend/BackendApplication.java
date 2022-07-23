@@ -18,7 +18,7 @@ public class BackendApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
+                registry.addMapping("https://portfolio-ap-angular-c5546.web.app/")
                         .allowedHeaders("*")
                         .allowedMethods("*")
                         .allowCredentials(false)
