@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "https://portfolio-ap-angular-c5546.web.app/")
 public class ControllerUsuarios {
 
     @Autowired
@@ -36,14 +38,9 @@ public class ControllerUsuarios {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<User> borrarUsuario(@PathVariable Long id) {
-        User currentUser = userServ.buscarUser(id);
-//        String usrtemp = userServ.buscarUser(id).getUsername();
-
         userServ.borrarUser(id);
-
-//        return "El usuario " + usrtemp + " fue eliminado exitosamente.";
-            currentUser = userServ.buscarUser(id);
-            return ResponseEntity.ok(currentUser);
+        User currentUser = userServ.buscarUser(id);
+        return ResponseEntity.ok(currentUser);
     }
 
     @PutMapping("/edit/{id}")
