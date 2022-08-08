@@ -24,7 +24,7 @@ public class BackendApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://portfolio-ap-angular-c5546.web.app/") //.allowedOrigins("https://portfolio-ap-angular-c5546.web.app/")
+                        .allowedOrigins("https://portfolio-ap-angular-c5546.web.app") //.allowedOrigins("https://portfolio-ap-angular-c5546.web.app/")
                         ;
             }
         };
@@ -34,7 +34,7 @@ public class BackendApplication {
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedOrigins(Arrays.asList("https://portfolio-ap-angular-c5546.web.app/", "http://localhost:4200"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("https://portfolio-ap-angular-c5546.web.app", "http://localhost:4200"));
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
                 "Accept", "Authorization", "Origin, Accept", "X-Request-With",
                 "Access-Control-Request-Method", "Access-Control-Request-Headers"));
