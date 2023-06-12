@@ -24,7 +24,7 @@ public class BackendApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://portfolio-ap-angular-c5546.web.app") //.allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("http://localhost:4200") //.allowedOrigins("https://portfolio-ap-angular-c5546.web.app/")
                         ;
             }
         };
